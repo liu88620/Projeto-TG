@@ -1,0 +1,45 @@
+body{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#wrap{
+    width: 1000px;
+    margin: auto;
+    background: #e3e3e3;
+    padding: 10px 20px;
+    overflow: auto;
+}
+#content{
+    float: left; /* deixa para flutua em esquerda*/
+    width: 660px;
+}
+header var ul{
+    display: block;
+}
+header nav ul li{
+    display: inline-block; /* deixa cada item um lado ao outro*/
+    margin-right: 10px; /* colocar o espaco de 10 px em direita do seu cada item*/
+}
+header nav ul li a{
+    font-size: 20px;
+}
+h1{
+    padding: 40px;
+}
+a:link, a:visited{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+#bloco2{
+    float: left;
+    width: 800px;
+}
+#competir{
+    float: right;
+    width: 200px;
+}
+#competir ul{
+    list-style: none;
+}
+
