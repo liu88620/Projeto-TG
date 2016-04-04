@@ -1,0 +1,19 @@
+#conteudo{
+    font-style: italic;
+}
+
+.sublinhado{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.sublinhado:hover{
+    color: green;
+}
+
+.layout{
+    padding: 5px 5px 5px 5px;
+    border: dashed 10px red;
+
+    margin: 15px 15px 15px 15px;
+}
