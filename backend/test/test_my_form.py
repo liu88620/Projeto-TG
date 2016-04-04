@@ -1,26 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
+
 import unittest
-import tmpl
-from web import my_form
+from web.models import MathProblem
 
 
-class FormTests(unittest.TestCase):
-    def test_index(self):
-        # Mocking dependencies
-        params = {}
+class MathProblemTests(unittest.TestCase):
 
-        def write_tmpl_mock(template_name, values):
-            params['template_name'] = template_name
-            params['values'] = values
-            tmpl.render(template_name, values)
+    def test_math_problem_sum_easy(self):
+        math_problem = MathProblem('easy', 'sum')
 
-        # fake http call
-        my_form.index(write_tmpl_mock, 'Renzo')
-
-        # Assertions
-        self.assertEqual('templates/form.html', params.get('template_name'), 'Wrong template')
-        self.assertDictEqual({'name': 'Renzo'}, params.get('values'), 'Wrong template values')
+        self.assertIn(math_problem.number_one, xrange(0, 10))
 
 
 if __name__ == '__main__':
