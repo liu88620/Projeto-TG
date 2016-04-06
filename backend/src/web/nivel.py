@@ -17,3 +17,19 @@ def medio(_write_tmpl):
 
 def dificil(_write_tmpl):
     _write_tmpl('templates/nivel.html')
+
+
+def adicao(_write_tmpl):
+    _write_tmpl('templates/adicao.html')
+
+
+def subtracao(_write_tmpl):
+    _write_tmpl('templates/subtracao.html')
+
+
+def multiplicacao(_write_tmpl):
+    _write_tmpl('templates/multiplicacao.html')
+
+
+def divisao(_write_tmpl):
+    _write_tmpl('templates/divisao.html')
