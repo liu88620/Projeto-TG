@@ -4,7 +4,7 @@ from tekton import router
 
 
 def index(_write_tmpl):
-    _write_tmpl('templates/home.html')
+    _write_tmpl('templates/index.html')
 
 
 def params(_resp, *args, **kwargs):
