@@ -1,7 +1,17 @@
 # coding: utf-8
 
-from random import randint, randrange
+from random import randint, randrange, shuffle
 from google.appengine.ext import ndb
+
+
+def generate_choices(start, end, step=1):
+    range_gen = randrange(start, end, step)
+    choices = []
+    while len(choices) != 2:
+        number = next(range_gen)
+        if number not in choices:
+            choices.append(number)
+    return choices
 
 
 class MathProblem(ndb.Model):
@@ -50,12 +60,13 @@ class MathProblem(ndb.Model):
         if self.kind == 'division':
             if self.level in ('easy', 'medium'):
                 self._set_numbers_values(randrange(2, 100, 2), randrange(2, 4, 5, 10))
-                self.choices = [randint(0, 10) for _ in xrange(2, 50, 2)]
+                self.choices = [randint(0, n) for n in xrange(2, 50, 2)]
             elif self.level == 'hard':
                 self._set_numbers_values(randrange(100, 1000, 2), randrange(2, 100, 2))
-                self.choices = [randint(0, 10) for _ in xrange(2, 100, 2)]
+                self.choices = [randint(0, n) for n in xrange(2, 50, 2)]
             self.answer = self.number_one // self.number_two
         self.choices.append(self.answer)
+        shuffle(self.choices)
 
     def answer_problem(self, answer):
         try:

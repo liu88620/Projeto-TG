@@ -1,29 +1,23 @@
-{%  extends 'templates/base.html' %}
+{% extends 'templates/base.html' %}
 
-{%  block title %}
+{% block title %}
     <title> Nível </title>
-{%  endblock %}
+{% endblock %}
 
-{%  block content %}
+{% block content %}
     <div id="wrap">
         <h1>MatBase</h1>
+
         <div id="bloco2">
             <header>
-                <nav><!--
-
-                    <ul>
-                        <li><a href="Aritimetica/adicao.html">Adicao</a></li>
-                        <li><a href="Aritimetica/subtracao.html">Subtracao</a></li>
-                        <li><a href="Aritimetica/multiplicacao.html">Multiplicacao</a></li>
-                        <li><a href="Aritimetica/divisao.html">Divisao</a></li>
-                    </ul> -->
+                <nav>
                     <ul>
                         <li><a href="adicao?level={{ level }}" class="btn btn-primary btn-lg active" role="button">Adicao</a>
                         </li>
-                        <li><a href="subtracao?level={{ level }}" class="btn btn-primary btn-lg active"
-                               role="button">Subtracao</a></li>
-                        <li><a href="multiplicacao?level={{ level }}" class="btn btn-primary btn-lg active" role="button">Multiplicacao</a>
+                        <li><a href="subtracao?level={{ level }}" class="btn btn-primary btn-lg active" role="button">Subtracao</a>
                         </li>
+                        <li><a href="multiplicacao?level={{ level }}" class="btn btn-primary btn-lg active"
+                               role="button">Multiplicacao</a></li>
                         <li><a href="divisao?level={{ level }}" class="btn btn-primary btn-lg active" role="button">Divisao</a>
                         </li>
                     </ul>
@@ -32,10 +26,10 @@
         </div>
         <div id="competir">
             <aside>
-                 <ul>
-                     <li><a href="#">Sala de Competicao </a></li>
-                 </ul>
+                <ul>
+                    <li><a href="#">Sala de Competicao </a></li>
+                </ul>
             </aside>
         </div>
     </div>
-{%  endblock %}
+{% endblock %}

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="/static/js/bootstrap.js"/>
-        <link rel="stylesheet" type="text/css" href="/static/css/aritmetica.css"/>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap.js"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/aritmetica.css"/>
 
-        {%  block title %}
-            <title></title>
-        {%  endblock %}
-        {%  block script %}
-        {%  endblock %}
-    </head>
-    <body ng-app="app">
-        {%  block content %}
-        {%  endblock %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
-        <script src="/static/js/app.js"></script>
-    </body>
+    {% block title %}
+        <title></title>
+    {% endblock %}
+    {% block script %}
+    {% endblock %}
+</head>
+<body ng-app="app">
+{% block content %}
+{% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
+<script src="/static/js/app.js"></script>
+</body>
 </html>
