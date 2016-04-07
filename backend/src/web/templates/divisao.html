@@ -1,7 +1,7 @@
 {% extends 'templates/base.html' %}
 
 {% block title %}
-    <title> Exercicio de Divisao </title>
+    <title> Exercicio de Divisão</title>
 {% endblock %}
 {% block script %}
     <script type="text/javascript">
@@ -10,14 +10,14 @@
     </script>
 {% endblock %}
 {% block content %}
-    <div id="wrap" ng-cotroller="MathController">
-        <h1> Exercicio de Divisao </h1>
+    <div id="wrap" ng-controller="MathController">
+        <h1> Exercicio de Divisão </h1>
 
         <div id="bloco2">
             <header>
                 <nav>
                     <ul>
-                        <h1> { problem.number_one } {op} {problem.operation} { problem.number_two } </h1>
+                        <h1> { problem.number_one } {problem.operation} { problem.number_two } </h1>
 
                         <button type="button" ng-click="answer(0)" class="btn btn-primary"> {problem.choices[0]}
                         </button>
