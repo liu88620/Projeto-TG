@@ -1,31 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{%  extends 'templates/base.html' %}
+
+{%  block title %}
     <title> Exercicio de Adicao </title>
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap.js"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/aritmetica.css"/>
+{%  endblock %}
+{%  block script %}
+    <script type="text/javascript">
+        var kind = '{{ kind }}';
+        var level = '{{ level }}';
+    </script>
+{%  endblock %}
+{%  block content %}
+    <div id="wrap" ng-controller="MathController">
+        <h1> Exercicio de Adicao</h1>
 
-</head>
+        <div id="bloco2">
+            <header>
+                <nav>
+                    <ul>
+                        <h1>{ problem.number_one }  {problem.operation} { problem.number_two } </h1>
 
-<body>
-<div id="wrap">
-    <h1> Exercicio de Adicao</h1>
-
-    <div id="bloco2">
-        <header>
-            <nav>
-                <ul>
-                    <h1>Local onde mostra exercicios</h1>
-
-                    <button type="button" class="btn btn-primary"> Resposta 1</button>
-                    <button type="button" class="btn btn-primary"> Resposta 2</button>
-                    <button type="button" class="btn btn-primary"> Resposta 3</button>
-                </ul>
-            </nav>
-        </header>
+                        <button type="button" ng-click="answer(0)" class="btn btn-primary">{problem.choices[0]}</button>
+                        <button type="button" ng-click="answer(1)" class="btn btn-primary">{problem.choices[1]}</button>
+                        <button type="button" ng-click="answer(2)" class="btn btn-primary">{problem.choices[2]}</button>
+                    </ul>
+                </nav>
+            </header>
+        </div>
     </div>
-</div>
-</body>
-</html>
+{%  endblock %}
