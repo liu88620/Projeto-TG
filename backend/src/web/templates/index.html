@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Nivel</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap.js"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/home.css"/>
-</head>
-<body>
-<div id="wrap">
-    <h1> Escolha o seu nivel </h1>
+{%  extends 'templates/base.html' %}
 
-    <div id="bloco2">
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="nivel/facil" class="btn btn-primary btn-lg btn-block"> Facil</a></li>
-                    <li><a href="nivel/medio" class="btn btn-primary btn-lg btn-block"> Medio</a></li>
-                    <li><a href="nivel/dificil" class="btn btn-primary btn-lg btn-block"> Dificil</a></li>
+{%  block title %}
+    <title> Nível </title>
+{%  endblock %}
 
-                </ul>
-            </nav>
-        </header>
+{%  block content %}
+    <div id="wrap">
+        <h1> Escolha o seu nivel </h1>
+
+        <div id="bloco2">
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="nivel/facil" class="btn btn-primary btn-lg btn-block"> Facil</a></li>
+                        <li><a href="nivel/medio" class="btn btn-primary btn-lg btn-block"> Medio</a></li>
+                        <li><a href="nivel/dificil" class="btn btn-primary btn-lg btn-block"> Dificil</a></li>
+
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
     </div>
-
-</div>
-</body>
-</body>
-</html>
+{%  endblock %}

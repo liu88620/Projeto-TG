@@ -1,46 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Pagina home</title>
-        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="/static/js/bootstrap.js" />
-        <link rel="stylesheet" type="text/css" href="/static/css/home.css" />
+{%  extends 'templates/base.html' %}
 
-    </head>
-    <body>
-        <div id="wrap">
-            <h1>MatBase</h1>
-            <div id="bloco2">
-                <header>
-                    <nav><!--
+{%  block title %}
+    <title> Nível </title>
+{%  endblock %}
 
-                        <ul>
-                            <li><a href="Aritimetica/adicao.html">Adicao</a></li>
-                            <li><a href="Aritimetica/subtracao.html">Subtracao</a></li>
-                            <li><a href="Aritimetica/multiplicacao.html">Multiplicacao</a></li>
-                            <li><a href="Aritimetica/divisao.html">Divisao</a></li>
-                        </ul> -->
-                        <ul>
-                            <li><a href="nivel/adicao" class="btn btn-primary btn-lg active" role="button">Adicao</a>
-                            </li>
-                            <li><a href="nivel/subtracao" class="btn btn-primary btn-lg active"
-                                   role="button">Subtracao</a></li>
-                            <li><a href="nivel/multiplicacao" class="btn btn-primary btn-lg active" role="button">Multiplicacao</a>
-                            </li>
-                            <li><a href="nivel/divisao" class="btn btn-primary btn-lg active" role="button">Divisao</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </header>
-            </div>
-            <div id="competir">
-                <aside>
-                     <ul>
-                         <li><a href="#">Sala de Competicao </a></li>
-                     </ul>
-                </aside>
-            </div>
+{%  block content %}
+    <div id="wrap">
+        <h1>MatBase</h1>
+        <div id="bloco2">
+            <header>
+                <nav><!--
+
+                    <ul>
+                        <li><a href="Aritimetica/adicao.html">Adicao</a></li>
+                        <li><a href="Aritimetica/subtracao.html">Subtracao</a></li>
+                        <li><a href="Aritimetica/multiplicacao.html">Multiplicacao</a></li>
+                        <li><a href="Aritimetica/divisao.html">Divisao</a></li>
+                    </ul> -->
+                    <ul>
+                        <li><a href="adicao?level={{ level }}" class="btn btn-primary btn-lg active" role="button">Adicao</a>
+                        </li>
+                        <li><a href="subtracao?level={{ level }}" class="btn btn-primary btn-lg active"
+                               role="button">Subtracao</a></li>
+                        <li><a href="multiplicacao?level={{ level }}" class="btn btn-primary btn-lg active" role="button">Multiplicacao</a>
+                        </li>
+                        <li><a href="divisao?level={{ level }}" class="btn btn-primary btn-lg active" role="button">Divisao</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
         </div>
-    </body>
-</html>
+        <div id="competir">
+            <aside>
+                 <ul>
+                     <li><a href="#">Sala de Competicao </a></li>
+                 </ul>
+            </aside>
+        </div>
+    </div>
+{%  endblock %}
