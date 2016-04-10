@@ -25,18 +25,22 @@ angular.module("app").controller('MathController', function($scope, $window, $ht
                 alert("Você errou");
             }
         }).finally(function(){
-            $window.location.reload();
+            _get_question();
         });
     };
 
-    $window.onload = function(){
-      $http({
-          url: '/api/create_problem',
-          method: 'GET',
-          params: {level: level, kind: kind}
-      }).success(function(result){
-            $scope.problem = result;
-            $scope.problem.operation = operation_map[$scope.problem.kind];
-      });
-    };
+	var _get_question = function(){
+		return $http({
+			url: '/api/create_problem',
+			method: 'GET',
+			params: {level: level, kind: kind}
+		}).success(function(result){
+			$scope.problem = result;
+			$scope.problem.operation = operation_map[$scope.problem.kind];
+		});
+	};
+
+	$window.onload = function(){
+		_get_question();
+	};
 });
