@@ -12,10 +12,11 @@
     {% block script %}
     {% endblock %}
 </head>
-<body ng-app="app" ng-cloak>
-{% block content %}
-{% endblock %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
-<script src="/static/js/app.js"></script>
-</body>
+    <body ng-app="app" ng-cloak>
+    {% block content %}
+    {% endblock %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
+        <script src="/static/js/rest_api.js"></script>
+        <script src="/static/js/app.js"></script>
+    </body>
 </html>

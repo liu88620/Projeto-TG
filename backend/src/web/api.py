@@ -6,7 +6,7 @@ from google.appengine.ext import ndb
 from web.models import MathProblem, MathProblemSet
 
 
-def create_problem_set(_resp, level=None, kind=None, quantity=10):
+def get_problem_set(_resp, level=None, kind=None, quantity=10):
     problems = []
     for _ in range(int(quantity)):
         math_problem = MathProblem(level=level, kind=kind)
@@ -26,17 +26,16 @@ def create_problem_set(_resp, level=None, kind=None, quantity=10):
     _resp.write(json.dumps(response))
 
 
-def get_problem(_resp, math_problem_set_id, index):
-    math_problem_set = MathProblemSet.get_by_id(long(math_problem_set_id))
+def get_problem(_resp, problem_set_id, index):
+    math_problem_set = MathProblemSet.get_by_id(long(problem_set_id))
 
     problem = math_problem_set.get_next_problem(int(index))
     if problem is not None:
         return _resp.write(json.dumps(problem.to_dict()))
-    return 
 
 
-def save_time_spent(_handler, time_spent, math_problem_set_id):
-    math_problem_set = MathProblemSet.get_by_id(long(math_problem_set_id))
+def save_time_spent(_handler, time_spent, problem_set_id):
+    math_problem_set = MathProblemSet.get_by_id(long(problem_set_id))
     math_problem_set.time_spent = float(time_spent)    
     math_problem_set.put()
 

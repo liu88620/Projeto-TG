@@ -2,8 +2,6 @@
 
 from random import randint, randrange, shuffle
 from google.appengine.ext import ndb
-from google.appengine.api.datastore_errors import BadValueError
-
 
 
 def generate_choices(start, end, step=1):
