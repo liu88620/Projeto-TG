@@ -1,7 +1,7 @@
 {% extends 'templates/base.html' %}
 
 {% block title %}
-    <title> Exercicio de Multiplicacao </title>
+    <title> Exercício de Multiplicação </title>
 {% endblock %}
 {% block script %}
     <script type="text/javascript">
@@ -11,7 +11,8 @@
 {% endblock %}
 {% block content %}
     <div id="wrap" ng-controller="MathController">
-        <h1> Exercicio de Multiplicacao </h1>
+        <h1> Exercício de Multiplicação </h1>
+
         <div>
             {time_spent}
         </div>
@@ -19,13 +20,13 @@
             <header>
                 <nav>
                     <ul>
-                        <h1> { problem.number_one } {problem.operation} { problem.number_two } </h1>
+                        <h2> { problem.number_one } {problem.operation} { problem.number_two } </h2>
 
-                        <button type="button" ng-click="answer(0)" class="btn btn-primary"> {problem.choices[0]}
+                        <button type="button" ng-click="answer(0)" class="btn btn-primary btn-lg">{problem.choices[0]}
                         </button>
-                        <button type="button" ng-click="answer(1)" class="btn btn-primary"> {problem.choices[1]}
+                        <button type="button" ng-click="answer(1)" class="btn btn-primary btn-lg">{problem.choices[1]}
                         </button>
-                        <button type="button" ng-click="answer(2)" class="btn btn-primary"> {problem.choices[2]}
+                        <button type="button" ng-click="answer(2)" class="btn btn-primary btn-lg">{problem.choices[2]}
                         </button>
                     </ul>
                 </nav>
