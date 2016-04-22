@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
-from tekton import router
+from web.utils import login_user
 
 
-def index(_write_tmpl):
+def index(_handler, _write_tmpl):
+    login_user(_handler)
     _write_tmpl('templates/index.html')
 
 
