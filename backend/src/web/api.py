@@ -36,7 +36,7 @@ def get_problem(_resp, problem_set_id, index):
 
 def save_time_spent(_handler, time_spent, problem_set_id):
     math_problem_set = MathProblemSet.get_by_id(long(problem_set_id))
-    math_problem_set.time_spent = float(time_spent)    
+    math_problem_set.time_spent = float(time_spent)
     math_problem_set.put()
 
 

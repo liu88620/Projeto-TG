@@ -15,7 +15,6 @@ def generate_choices(start, end, step=1):
 
 
 class MathProblemSet(ndb.Model):
-
     problems = ndb.KeyProperty(repeated=True)
     time_spent = ndb.FloatProperty(required=False)
     right_answers = ndb.IntegerProperty(required=False, default=0)

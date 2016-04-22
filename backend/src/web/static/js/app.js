@@ -4,7 +4,7 @@ angular.module("app").config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{').endSymbol('}');
 });
 
-angular.module("app").controller('MathController', function($scope, $window, $interval, $http, RestApi){
+angular.module("app").controller('MathController', function ($scope, $window, $interval, $http, RestApi) {
 
     var operation_map = {
         'multiplication': '*',
@@ -16,14 +16,14 @@ angular.module("app").controller('MathController', function($scope, $window, $in
     var quantity = 2;
     $scope.time_spent = 0;
 
-    $interval(function(){
-        $scope.time_spent ++;
+    $interval(function () {
+        $scope.time_spent++;
     }, 1000);
 
 
     $scope.answer = function(choice_index){
         var answer = $scope.problem.choices[choice_index];
-        RestApi.solve_problem($scope.problem.id, math_problem_set_id, answer).success(function(result){
+        RestApi.solve_problem($scope.problem.id, math_problem_set_id, answer).success(function (result) {
             if (result.is_correct){
                 alert("Você acertou");
             }else{
@@ -31,32 +31,32 @@ angular.module("app").controller('MathController', function($scope, $window, $in
             }
         }).finally(function(){
             problem_index++;
-            if (problem_index == quantity){
-                RestApi.save_time_spent($scope.time_spent, math_problem_set_id).success(function(){
+            if (problem_index == quantity) {
+                RestApi.save_time_spent($scope.time_spent, math_problem_set_id).success(function () {
                     $window.location.href = '/resultados/' + math_problem_set_id;
                 });
-            }else{
+            } else {
                 _get_problem(problem_index);
             }
         });
     };
 
-	var _get_problem = function(index){
-		RestApi.get_problem(math_problem_set_id, index).success(function(result){
+    var _get_problem = function (index) {
+        RestApi.get_problem(math_problem_set_id, index).success(function (result) {
             $scope.problem = result;
             $scope.problem.operation = operation_map[$scope.problem.kind];
-		});
-	};
+        });
+    };
 
-    var _get_problem_set = function(){
-      RestApi.get_problem_set(level, kind, quantity).success(function(result){
+    var _get_problem_set = function () {
+        RestApi.get_problem_set(level, kind, quantity).success(function (result) {
             problem_index = 0;
             $scope.problem = result.problem;
             math_problem_set_id = result.math_problem_set_id;
             $scope.problem.operation = operation_map[$scope.problem.kind];
-        });  
+        });
     }
-	$window.onload = function(){
-		_get_problem_set();
-	};
+    $window.onload = function () {
+        _get_problem_set();
+    };
 });

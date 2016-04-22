@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
-from tekton import router
+from web.decorators import logged
 
 
-def index(_write_tmpl):
+def cadastra(_write_tmpl):
+    _write_tmpl('templates/cadastro.html')
+
+
+@logged
+def index(_handler, _write_tmpl):
     _write_tmpl('templates/index.html')
 
 

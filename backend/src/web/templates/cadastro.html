@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Cadastro do Usuario</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap.js"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/home.css"/>
-</head>
-<body background="/static/img/33.jpg">
-<header>
-    <h1> MatBase </h1>
-    <var>
-        <ul>
-            <div id="wrap" ng-controller="MathController">
-                <div id="bloco2">
-                    <label for="nome">Nome: </label>
-                    <input id="nome" type="text" placeholder="Digite o seu nome" name="nome"/>
-                    <!-- placeholder cria o caixa de texto */ -->
-                    <button type="button" class="btn btn-success"> Enviar</button>
-                    <!-- value cria um botao-->
-                </div>
-            </div>
-        </ul>
-    </var>
-</header>
+{% extends 'templates/base.html' %}
 
-</body>
-</html>
+{% block title %}
+    <title> Cadastro </title>
+{% endblock %}
+
+{% block content %}
+    <div id="wrap">
+        <h1> MatBase </h1>
+
+        <div id="bloco2">
+            <label for="nome">Nome: </label>
+            <input id="nome" type="text" placeholder="Digite o seu nome" name="nome"/>
+            <!-- placeholder cria o caixa de texto */ -->
+            <button herf="templates/index.html" type="button" class="btn btn-success"> Enviar</button>
+            <!-- value cria um botao-->
+        </div>
+    </div>
+
+{% endblock %}
