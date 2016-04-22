@@ -14,6 +14,26 @@ def generate_choices(start, end, step=1):
     return choices
 
 
+class MathProblemSet(ndb.Model):
+
+    problems = ndb.KeyProperty(repeated=True)
+    time_spent = ndb.FloatProperty(required=False)
+    right_answers = ndb.IntegerProperty(required=False, default=0)
+
+    def get_next_problem(self, index):
+        try:
+            problem = self.problems[index]
+        except IndexError:
+            return None
+        else:
+            return problem.get()
+
+    def to_dict(self, *args, **kwargs):
+        dic = super(MathProblemSet, self).to_dict()
+        dic['id'] = self.key.id()
+        return dic
+
+
 class MathProblem(ndb.Model):
 
     level = ndb.StringProperty(required=True)
@@ -25,13 +45,17 @@ class MathProblem(ndb.Model):
 
     def __init__(self, *args, **kwargs):
         super(MathProblem, self).__init__(*args, **kwargs)
-        self._generate_problem()
+
+    def to_dict(self, *args, **kwargs):
+        dic = super(MathProblem, self).to_dict()
+        dic['id'] = self.key.id()
+        return dic
 
     def _set_numbers_values(self, value_one, value_two):
         self.number_one = value_one
         self.number_two = value_two
 
-    def _generate_problem(self):
+    def generate_problem(self):
         if self.kind in ('addition', 'subtraction'):
             if self.level == 'easy':
                 self._set_numbers_values(randint(0, 10), randint(0, 10))
