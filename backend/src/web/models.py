@@ -1,17 +1,17 @@
 # coding: utf-8
 
-from random import randint, randrange, shuffle
+import operator
+from random import randint, randrange, shuffle, choice
 from google.appengine.ext import ndb
+from web.utils import divider_int
 
 
-def generate_choices(start, end, step=1):
-    range_gen = randrange(start, end, step)
-    choices = []
-    while len(choices) != 2:
-        number = next(range_gen)
-        if number not in choices:
-            choices.append(number)
-    return choices
+kind_to_operation = {
+    'addition': operator.add,
+    'subtraction': operator.sub,
+    'multiplication': operator.mul,
+    'division': operator.div
+}
 
 
 class MathProblemSet(ndb.Model):
@@ -32,6 +32,17 @@ class MathProblemSet(ndb.Model):
         dic['id'] = self.key.id()
         return dic
 
+    def get_first_problem(self):
+        return self.problems[0].get()
+
+    def get_problem_kind(self):
+        # assume que todos os problemas
+        # possuem mesmo kind
+
+        return self.get_first_problem().kind
+
+    def get_problem_level(self):
+        return self.get_first_problem().level
 
 class MathProblem(ndb.Model):
 
@@ -50,46 +61,52 @@ class MathProblem(ndb.Model):
         dic['id'] = self.key.id()
         return dic
 
-    def _set_numbers_values(self, value_one, value_two):
-        self.number_one = value_one
-        self.number_two = value_two
-
     def generate_problem(self):
+        operation = kind_to_operation[self.kind]
+        range1, range2 = randrange(10), randrange(2, 10)
+        start, end = 0, 10
+
         if self.kind in ('addition', 'subtraction'):
-            if self.level == 'easy':
-                self._set_numbers_values(randint(0, 10), randint(0, 10))
-                self.choices = [randint(0, 10) for _ in xrange(2)]
-            elif self.level == 'medium':
-                self._set_numbers_values(randint(0, 19), randint(0, 19))
-                self.choices = [randint(0, 19) for _ in xrange(2)]
-            elif self.level == 'hard':
-                self._set_numbers_values(randint(0, 199), randint(0, 199))
-                self.choices = [randint(0, 199) for _ in xrange(2)]
-            if self.kind == 'addition':
-                self.answer = self.number_one + self.number_two
-            else:
-                self.answer = self.number_one - self.number_two
-        if self.kind == 'multiplication':
-            if self.level == 'easy':
-                self._set_numbers_values(randint(0, 10), randint(0, 10))
-                self.choices = [randint(0, 50) for _ in xrange(2)]
             if self.level == 'medium':
-                self._set_numbers_values(randint(0, 100), randint(0, 10))
-                self.choices = [randint(50, 150) for _ in xrange(2)]
+                range1, range2 = randrange(19), randrange(19)
+                start, end = 10, 19
             if self.level == 'hard':
-                self._set_numbers_values(randint(0, 100), randint(0, 50))
-                self.choices = [randint(100, 900) for _ in xrange(2)]
-            self.answer = self.number_one * self.number_two
+                range1, range2 = randrange(199), randrange(199)
+                start, end = 100, 199
         if self.kind == 'division':
             if self.level in ('easy', 'medium'):
-                self._set_numbers_values(randrange(2, 100, 2), randrange(2, 10, 1))
-                self.choices = [randrange(0, 10, 2) for _ in range(2)]
+                range1 = randrange(2, 100, 2)
+                range2 = choice(divider_int(range1))
+                start, end = 0, 10
             elif self.level == 'hard':
-                self._set_numbers_values(randrange(100, 1000, 2), randrange(2, 100, 2))
-                self.choices = [randrange(0, 10, 2) for _ in range(2)]
-            self.answer = self.number_one // self.number_two
-        self.choices.append(self.answer)
+                range1 = randrange(100, 1000, 2)
+                range2 = choice(divider_int(range1))
+                start, end = 10, 1000
+        if self.kind == 'multiplication':
+             if self.level == 'easy':
+                 range1, range2 = randint(0, 10), randint(0, 10)
+                 start, end = 0, 50
+             if self.level == 'medium':
+                 range1, range2 = randint(0, 100), randint(0, 10)
+                 start, end = 50, 150
+             if self.level == 'hard':
+                 range1, range2 = randint(0, 100), randint(0, 50)
+                 start, end = 100, 900
+        self.generate_answer(range1, range2, operation)
+        self.generate_choices(start, end)
         shuffle(self.choices)
+
+    def generate_choices(self, start, end, step=1, quant_choices=2):
+        while len(self.choices) <= quant_choices:
+            number = randrange(start, end, step)
+            if number not in self.choices:
+                self.choices.append(number)
+
+    def generate_answer(self, range1, range2, operation):
+        self.number_one = range1
+        self.number_two = range2
+        self.answer = operation(self.number_one, self.number_two)
+        self.choices.append(self.answer)
 
     def answer_problem(self, answer):
         try:

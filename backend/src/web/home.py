@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
-from web.decorators import logged
+from web.utils import login_user
 
 
-def cadastra(_write_tmpl):
-    _write_tmpl('templates/cadastro.html')
-
-
-@logged
 def index(_handler, _write_tmpl):
+    login_user(_handler)
     _write_tmpl('templates/index.html')
 
 
