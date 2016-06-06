@@ -4,7 +4,7 @@ angular.module("app").config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{').endSymbol('}');
 });
 
-angular.module("app").controller('MathController', function ($scope, $window, $interval, $http, RestApi) {
+angular.module("app").controller('MathController', function ($scope, $window, $interval, RestApi) {
 
     var operation_map = {
         'multiplication': '*',
@@ -12,8 +12,15 @@ angular.module("app").controller('MathController', function ($scope, $window, $i
         'division': '/',
         'subtraction': '-'
     };
+
+    var level_map = {
+        'facil': 'easy',
+        'medio': 'medium',
+        'dificil': 'hard'
+    };
+
     var math_problem_set_id, problem_index;
-    var quantity = 2;
+    var quantity_of_questions = 10;
     $scope.time_spent = 0;
 
     $interval(function () {
@@ -31,7 +38,7 @@ angular.module("app").controller('MathController', function ($scope, $window, $i
             }
         }).finally(function(){
             problem_index++;
-            if (problem_index == quantity) {
+            if (problem_index == quantity_of_questions) {
                 RestApi.save_time_spent($scope.time_spent, math_problem_set_id).success(function () {
                     $window.location.href = '/resultados/' + math_problem_set_id;
                 });
@@ -49,7 +56,7 @@ angular.module("app").controller('MathController', function ($scope, $window, $i
     };
 
     var _get_problem_set = function () {
-        RestApi.get_problem_set(level, kind, quantity).success(function (result) {
+        RestApi.get_problem_set(level_map[level], kind, quantity_of_questions).success(function (result) {
             problem_index = 0;
             $scope.problem = result.problem;
             math_problem_set_id = result.math_problem_set_id;
